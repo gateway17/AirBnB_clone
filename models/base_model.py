@@ -14,4 +14,10 @@ class BaseModel:
 
         self.id = id.uuid
         self.created_at = created_at
-        self.updated_at 
+        self.updated_at = updated_at
+
+    def __str__(self):
+        """
+        returns string type representation of object instance
+        """
+        info = [] + (self.id) 
