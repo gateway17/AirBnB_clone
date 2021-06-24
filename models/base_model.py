@@ -20,4 +20,7 @@ class BaseModel:
         """
         returns string type representation of object instance
         """
-        info = [] + (self.id) 
+        Base_Model.__name__
+        return "[{}] ({}) {}".format(self., self.id, self.__dict__)
+
+[<class name>] (<self.id>) <self.__dict__>
