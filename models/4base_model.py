@@ -8,11 +8,13 @@ from datetime import datetime
 
 class BaseModel:
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         Inicialize first values for
         atributes: id, created_at, updated_at
         """
+        if kwargs:
+            
 
         self.id = str(uuid4())
         self.created_at = datetime.utcnow()
