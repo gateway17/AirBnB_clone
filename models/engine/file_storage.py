@@ -9,31 +9,24 @@ import os
 
 class FileStorage:
 
-
     __file_path = "file.json"
-    __objects = {}
+    __objects = {'andres':20, 'Liliana':30}
 
-
-    def all(self):
-        """Returns a diccionary of ALL objects """
+    def all(self): # Que pasa si el diccionario esta vacio, 2) No me pasan un diccionario,
+        """returns the dictionary __objects """
         return FileStorage.__objects
 
     def new(self, obj):
-        """sets in __objects the obj with key <obj class name>.id """
-        key = obj.__class__.__name_ + "." + obj.id # "{}.{}".format(type(obj).__name__, obj.id)
-        self.__objects[key] = obj
+        """ sets in __objects the obj with key <obj class name>.id """
+        if obj:
+            self.__objects[obj.__class__.__name__ + "." + obj.id] = obj
 
 
-    def save(self):
-        """serializes __objects to the JSON file (path: _file_path)"""
-        json.dumps(FileStorage.__objects, FileStorage.__file_path)
 
-    def reload(self):
-        """if the file exist, deserializes the JSON file to __objects"""
-        try:
-            os.path.isfile(FileStorage.__file_path)
-        except Exception as e:
-            pass
-        else:
-            with open(FileStorage.__file_path, 'r') as buffer:
-                FileStorage.__objects = json.loads(buffer)
+objeto = FileStorage()
+print(objeto.all())
+print("----")
+objeto2 = FileStorage()
+objeto2. mi_nombre = "Andres"
+objeto.new(objeto2)
+print(objeto.__objects)
