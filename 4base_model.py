@@ -3,11 +3,10 @@
 """
 This is the Base class
 """
-from models.__init__ import storage
 from uuid import uuid4
 from datetime import datetime
 
-class BaseModel(FileStorage):
+class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """
@@ -19,8 +18,6 @@ class BaseModel(FileStorage):
             self.id = str(uuid4())
             self.created_at = datetime.utcnow()
             self.updated_at = datetime.utcnow()
-            if args:
-                super().new()
 
         else:
             self.__dict__ = kwargs # unittest, What if not atribute __class__ in dictionary
@@ -43,8 +40,7 @@ class BaseModel(FileStorage):
     def save(self):
         """ updates the public instance attribute updated_at\
          with the current datetime """
-        self.updated_at = datetime.utcnow() # "datetime.datetime({})".format(datetime.isoformat(datetime.now)
-        super().storage.save()
+        self.updated_at = datetime.utcnow() # "datetime.datetime({})".format(datetime.isoformat(datetime.now()))
 
     def to_dict(self):
         """returns a dictionary containing all keys/values of __dict__ of the instance """
