@@ -21,7 +21,6 @@ class HBNBCommand(cmd.Cmd):
     def help(self):
         """Get a help with HBNBCommands """
 
-
     def create(self, arg):
         """ Creates intances of given argument """
 
@@ -30,8 +29,8 @@ class HBNBCommand(cmd.Cmd):
         elif arg not in self.clases:
             print("** class doesn't exist **")
         else:
-            instance = eval(arg[0])() #unittest, What if pass me severals arguments
-            BaseModel.storage.save(instance) # es lo mismo que decir instance.save()
+            instance = eval(arg[0])()
+            BaseModel.storage.save(instance)
             print(instance.id)
 
     def show(self arg):
@@ -51,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
         if data in objects.keys():
             print(objects[data])
 
-    def destroy(self,arg):
+    def destroy(self, arg):
         """ Deletes an instance based on the class name and id"""
         args = parse(arg)
         if arg == []:
@@ -67,7 +66,6 @@ class HBNBCommand(cmd.Cmd):
                 objects.pop(data, None)
                 objects.storage.save()
 
-
     def all(self, arg):
         """ """
         args = parse(arg)
@@ -79,15 +77,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             if
             return list(str(objects))
-        #instances = models.storage.all()
-
-
-
-
-
-
-
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

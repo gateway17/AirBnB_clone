@@ -10,9 +10,9 @@ import os
 class FileStorage:
 
     __file_path = "file.json"
-    __objects = {'andres':20, 'Liliana':30}
+    __objects = {'andres': 20, 'Liliana': 30}
 
-    def all(self): # Que pasa si el diccionario esta vacio, 2) No me pasan un diccionario,
+    def all(self):
         """returns the dictionary __objects """
         return self.__objects
 
@@ -23,10 +23,8 @@ class FileStorage:
 
     def save(self):
         """ serializes __objects to the JSON file (path: __file_path)"""
-        with open(self.__file_path,"w") as buffer:
+        with open(self.__file_path, "w") as buffer:
             json.dump(self.__objects, buffer)
-
-
 
     def reload(self):
         """if the file exist, deserializes the JSON file to __objects"""
