@@ -14,19 +14,26 @@ class FileStorage:
 
     def all(self): # Que pasa si el diccionario esta vacio, 2) No me pasan un diccionario,
         """returns the dictionary __objects """
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
         """ sets in __objects the obj with key <obj class name>.id """
         if obj:
             self.__objects[obj.__class__.__name__ + "." + obj.id] = obj
 
+    def save(self):
+        """ serializes __objects to the JSON file (path: __file_path)"""
+        with open(self.__file_path,"w") as buffer:
+            json.dump(self.__objects, buffer)
 
 
-objeto = FileStorage()
-print(objeto.all())
-print("----")
-objeto2 = FileStorage()
-objeto2. mi_nombre = "Andres"
-objeto.new(objeto2)
-print(objeto.__objects)
+
+    def reload(self):
+        """if the file exist, deserializes the JSON file to __objects"""
+        try:
+            os.path.isfile(FileStorage.__file_path)
+            with open(self.__file_path, 'r') as buffer:
+                self.__objects = json.load(buffer)
+
+        except Exception as e:
+            pass
