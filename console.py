@@ -33,7 +33,7 @@ class HBNBCommand(cmd.Cmd):
             BaseModel.storage.save(instance)
             print(instance.id)
 
-    def show(self arg):
+    def show(self, arg):
         """ Prints the string representation of an instance\
         based on the class name and id """
         args = parse(arg)
@@ -75,7 +75,6 @@ class HBNBCommand(cmd.Cmd):
         elif data in objects.keys:
             return list(str(data))
         else:
-            if
             return list(str(objects))
 
 if __name__ == '__main__':
