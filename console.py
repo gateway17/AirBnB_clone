@@ -3,6 +3,7 @@
 """Entry piont of AirBnB console """
 import cmd
 from models.base_model import BaseModel
+from shlex import split as parse
 
 
 class HBNBCommand(cmd.Cmd):
@@ -10,18 +11,16 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
     clases = ["BaseModel"]
 
-    def quit(self):
+    def do_quit(self, arg):
         """ quit and EOF to exit the program.\n """
         return True
 
-    def EOF(self):
+    def do_EOF(self,arg):
         """ quit and EOF to exit the program.\n """
         return True
 
-    def help(self):
-        """Get a help with HBNBCommands """
 
-    def create(self, arg):
+    def do_create(self, arg):
         """ Creates intances of given argument """
 
         if len(arg) == 0:
@@ -33,7 +32,7 @@ class HBNBCommand(cmd.Cmd):
             BaseModel.storage.save(instance)
             print(instance.id)
 
-    def show(self, arg):
+    def do_show(self, arg):
         """ Prints the string representation of an instance\
         based on the class name and id """
         args = parse(arg)
@@ -50,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
         if data in objects.keys():
             print(objects[data])
 
-    def destroy(self, arg):
+    def do_destroy(self, arg):
         """ Deletes an instance based on the class name and id"""
         args = parse(arg)
         if arg == []:
@@ -65,8 +64,10 @@ class HBNBCommand(cmd.Cmd):
             if data in objects.keys():
                 objects.pop(data, None)
                 objects.storage.save()
+            else:
+                print('** no instance found **')
 
-    def all(self, arg):
+    def do_all(self, arg):
         """ """
         args = parse(arg)
         data = args[0] + '.' + args[1]
